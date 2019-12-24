@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sidebar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="Auto" Width="200" Loaded="Window_Loaded" Closing="Window_Closing">
+    <StackPanel HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto">
+        <Button Content="Schließen" Click="Button_Click_2"/>
+    </StackPanel>
 </Window>
