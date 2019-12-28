@@ -19,7 +19,7 @@ namespace Sidebar
         private PerformanceCounter perfCounter;
         private int repeat;
 
-        public void Init(ProgressBar bar, string category, string value, string param, int repeat = 1000, Label label = null)
+        public void Init(ProgressBar bar, string category, string value, string param, int repeat, Label label)
         {
 
             this.repeat = repeat;
@@ -67,7 +67,10 @@ namespace Sidebar
         /// <param name="e"></param>    
         void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            bar.Value = e.ProgressPercentage;
+            if (bar != null)
+            {
+                bar.Value = e.ProgressPercentage;
+            }
             if (label != null)
             {
                 label.Content = e.ProgressPercentage.ToString() + "%";

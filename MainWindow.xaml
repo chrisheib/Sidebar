@@ -38,6 +38,18 @@
                 <Label Name="lblCPUCore8" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,0,2" VerticalAlignment="Top" FontSize="8" Padding="0" Height="10" Foreground="LightGray"/>
             </StackPanel>
         </Grid>
+        <Label Content="Drives" Margin="0,0,0,0" Foreground="LightGray"/>
+        <Grid Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="DriveLeft" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                <!--<Label Content="abc"></Label>-->
+            </StackPanel>
+            <StackPanel Name="DriveRight" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+            </StackPanel>
+        </Grid>
     </StackPanel>
     <Window.Background>
         <VisualBrush TileMode="Tile" Viewport="0,0,0.5,0.5">
