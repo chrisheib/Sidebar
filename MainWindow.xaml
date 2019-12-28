@@ -8,5 +8,17 @@
         Title="MainWindow" Height="Auto" Width="200" Loaded="Window_Loaded" Closing="Window_Closing">
     <StackPanel HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto">
         <Button Content="Schließen" Click="Button_Click_2"/>
+        <Label Content="CPU
+               "/>
+        <ProgressBar Name="pbCPUTotal" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore1" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore2" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore3" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore4" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore5" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore6" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore7" Height="10"/>
+        <ProgressBar x:Name="pbCPUCore8" Height="10"/>
+        <!--<rolling:RollingMonitor Name="monitor" Margin="5"/>-->
     </StackPanel>
 </Window>

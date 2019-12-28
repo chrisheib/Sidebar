@@ -34,6 +34,7 @@ namespace Sidebar
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             AppBarFunctions.SetAppBar(this, ABEdge.Right);
+            CPU.Init(pbCPUTotal);
         }
 
         private void Window_Closing(object sender, EventArgs e)

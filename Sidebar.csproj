@@ -55,8 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class1.cs" />
     <Compile Include="WpfAppBar\WpfAppBar\AppBarFunctions.cs" />
     <Compile Include="WpfAppBar\WpfAppBar\Interop.cs" />
+    <Compile Include="WPFRollingMonitor\RollingMonitor.xaml.cs">
+      <DependentUpon>RollingMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFRollingMonitor\RollingSeries.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +74,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WPFRollingMonitor\RollingMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Performance Counter Overview.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
