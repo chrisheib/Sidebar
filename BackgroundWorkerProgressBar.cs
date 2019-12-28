@@ -10,34 +10,35 @@ namespace Sidebar
     /// <summary>    
     /// It implements backgroundworker.   
     /// </summary>    
-    class CPU
+    class BackgroundWorkerProgressBar
     {
 
-        private static BackgroundWorker backgroundWorker;
-        private static ProgressBar bar;
-        private static PerformanceCounter perfCounter;
+        private BackgroundWorker backgroundWorker;
+        private ProgressBar bar;
+        private Label label;
+        private PerformanceCounter perfCounter;
+        private int repeat;
 
-        public static void Init(ProgressBar oBar)
+        public void Init(ProgressBar bar, string category, string value, string param, int repeat = 1000, Label label = null)
         {
 
-            bar = oBar;
-            perfCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            this.repeat = repeat;
+            this.label = label;
+            this.bar = bar;
+
+            perfCounter = new PerformanceCounter(category, value, param);
 
             backgroundWorker = new BackgroundWorker
             {
-
                 WorkerReportsProgress = true,
                 WorkerSupportsCancellation = true
-
             };
 
             //Event creation.    
             //For the performing operation in the background.    
             backgroundWorker.DoWork += BackgroundWorker_DoWork; 
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
-            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             backgroundWorker.RunWorkerAsync();
-
         }
 
         /// <summary>    
@@ -45,27 +46,18 @@ namespace Sidebar
         /// </summary>    
         /// <param name="sender"></param>    
         /// <param name="e"></param>    
-
-        static void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
             while (true)
             {
-
                 if (backgroundWorker.CancellationPending)
                 {
-
                     e.Cancel = true;
                     return;
-
                 }
-
                 backgroundWorker.ReportProgress((int)Math.Truncate((double) perfCounter.NextValue()));
-                Thread.Sleep(1000);
-                e.Result = 1000;
-
+                Thread.Sleep(repeat);
             }
-
         }
 
         /// <summary>    
@@ -73,44 +65,13 @@ namespace Sidebar
         /// </summary>    
         /// <param name="sender"></param>    
         /// <param name="e"></param>    
-
-        static void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
             bar.Value = e.ProgressPercentage;
-
-        }
-
-        /// <summary>    
-        /// Displays result of background performing operation.    
-        /// </summary>    
-        /// <param name="sender"></param>    
-        /// <param name="e"></param>    
-
-        static void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-            if (e.Cancelled)
+            if (label != null)
             {
-
-                Console.WriteLine("Operation Cancelled");
-
+                label.Content = e.ProgressPercentage.ToString() + "%";
             }
-
-            else if (e.Error != null)
-            {
-
-                Console.WriteLine("Error in Process :" + e.Error);
-
-            }
-
-            else
-            {
-
-                Console.WriteLine("Operation Completed :" + e.Result);
-
-            }
-
         }
 
     }
