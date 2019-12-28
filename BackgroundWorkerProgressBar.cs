@@ -18,13 +18,19 @@ namespace Sidebar
         private Label label;
         private PerformanceCounter perfCounter;
         private int repeat;
+        private int value;
+        private event DummyEvent OnUpdate;
 
-        public void Init(ProgressBar bar, string category, string value, string param, int repeat, Label label)
+        public delegate void DummyEvent(int value);
+
+        public void Init(ProgressBar bar, string category, string value, string param, int repeat, Label label, DummyEvent onUpdate = null)
         {
 
             this.repeat = repeat;
             this.label = label;
             this.bar = bar;
+            OnUpdate = onUpdate;
+            this.value = 0;
 
             perfCounter = new PerformanceCounter(category, value, param);
 
@@ -45,7 +51,7 @@ namespace Sidebar
         /// Performs operation in the background.    
         /// </summary>    
         /// <param name="sender"></param>    
-        /// <param name="e"></param>    
+        /// <param name="e"></param>
         void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
@@ -55,7 +61,8 @@ namespace Sidebar
                     e.Cancel = true;
                     return;
                 }
-                backgroundWorker.ReportProgress((int)Math.Truncate((double) perfCounter.NextValue()));
+                value = (int)Math.Truncate(perfCounter.NextValue());
+                backgroundWorker.ReportProgress(0);
                 Thread.Sleep(repeat);
             }
         }
@@ -64,16 +71,20 @@ namespace Sidebar
         /// Displays Progress changes to UI .    
         /// </summary>    
         /// <param name="sender"></param>    
-        /// <param name="e"></param>    
+        /// <param name="e"></param>
         void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (bar != null)
             {
-                bar.Value = e.ProgressPercentage;
+                bar.Value = value;
             }
             if (label != null)
             {
-                label.Content = e.ProgressPercentage.ToString() + "%";
+                label.Content = value.ToString() + "%";
+            }
+            if (OnUpdate != null)
+            {
+                OnUpdate.Invoke(value);
             }
         }
 

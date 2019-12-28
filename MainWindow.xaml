@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sidebar"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="136" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Sidebar" Height="Auto" Width="136" Loaded="Window_Loaded" Closing="Window_Closing" ShowInTaskbar="False" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto">
         <Button Content="Schließen" Click="Button_Click_2"/>
         <Label Content="CPU" Margin="0,0,0,0" Foreground="LightGray"/>
@@ -45,9 +45,23 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Name="DriveLeft" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
-                <!--<Label Content="abc"></Label>-->
             </StackPanel>
             <StackPanel Name="DriveRight" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+            </StackPanel>
+        </Grid>
+        <Label Content="Network" Margin="0,0,0,0" Foreground="LightGray"/>
+        <Grid Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                <Label Content="Down" HorizontalAlignment="Left" Margin="0,0,0,2" VerticalAlignment="Top" FontSize="8" Padding="0" Height="10" Foreground="LightGray"/>
+                <Label Content="Up" HorizontalAlignment="Left" Margin="0,0,0,2" VerticalAlignment="Top" FontSize="8" Padding="0" Height="10" Foreground="LightGray"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                <ProgressBar Name="NetworkDown" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100"/>
+                <ProgressBar Name="NetworkUp" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100"/>
             </StackPanel>
         </Grid>
     </StackPanel>
