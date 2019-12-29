@@ -10,7 +10,7 @@ namespace Sidebar
     /// <summary>    
     /// It implements backgroundworker.   
     /// </summary>    
-    class BackgroundWorkerProgressBar
+    class PerformanceCounterBackgroundWorker
     {
 
         private BackgroundWorker backgroundWorker;
@@ -40,8 +40,6 @@ namespace Sidebar
                 WorkerSupportsCancellation = true
             };
 
-            //Event creation.    
-            //For the performing operation in the background.    
             backgroundWorker.DoWork += BackgroundWorker_DoWork; 
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerAsync();

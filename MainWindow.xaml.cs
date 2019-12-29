@@ -22,8 +22,8 @@ namespace Sidebar
             //GPU
             //Drives
             InitDrives();
-            //Prozesse Memory
-            //Prozesse CPU
+            //Prozesse Memory & CPU
+            InitProcesses();
             //Netzwerk
             InitNetwork();
             //Ping
@@ -31,15 +31,15 @@ namespace Sidebar
 
         private void InitCPU()
         {
-            new BackgroundWorkerProgressBar().Init(pbCPUTotal, "Processor", "% Processor Time", "_Total", 1000, lblCPUTotal);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore1, "Processor", "% Processor Time", "0", 1000, lblCPUCore1);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore2, "Processor", "% Processor Time", "1", 1000, lblCPUCore2);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore3, "Processor", "% Processor Time", "2", 1000, lblCPUCore3);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore4, "Processor", "% Processor Time", "3", 1000, lblCPUCore4);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore5, "Processor", "% Processor Time", "4", 1000, lblCPUCore5);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore6, "Processor", "% Processor Time", "5", 1000, lblCPUCore6);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore7, "Processor", "% Processor Time", "6", 1000, lblCPUCore7);
-            new BackgroundWorkerProgressBar().Init(pbCPUCore8, "Processor", "% Processor Time", "7", 1000, lblCPUCore8);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUTotal, "Processor", "% Processor Time", "_Total", 1000, lblCPUTotal);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore1, "Processor", "% Processor Time", "0", 1000, lblCPUCore1);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore2, "Processor", "% Processor Time", "1", 1000, lblCPUCore2);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore3, "Processor", "% Processor Time", "2", 1000, lblCPUCore3);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore4, "Processor", "% Processor Time", "3", 1000, lblCPUCore4);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore5, "Processor", "% Processor Time", "4", 1000, lblCPUCore5);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore6, "Processor", "% Processor Time", "5", 1000, lblCPUCore6);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore7, "Processor", "% Processor Time", "6", 1000, lblCPUCore7);
+            new PerformanceCounterBackgroundWorker().Init(pbCPUCore8, "Processor", "% Processor Time", "7", 1000, lblCPUCore8);
         }
 
         private void InitDrives()
@@ -68,26 +68,33 @@ namespace Sidebar
                 {
                     Height = 10,
                     Margin = new Thickness(0, 4, 0, 1),
-                    Background = Brushes.Gray
+                    Background = Brushes.Gray,
+                    BorderBrush = Brushes.Gray
                 };
                 DriveRight.Children.Add(bar);
-                new BackgroundWorkerProgressBar().Init(null, "Logischer Datenträger", "Zeit (%)", d.Name[0].ToString() + d.Name[1].ToString(), 1000, lbl);
-                new BackgroundWorkerProgressBar().Init(bar, "Logischer Datenträger", "Freier Speicherplatz (%)", d.Name[0].ToString() + d.Name[1].ToString(), 1000, null);
+                new PerformanceCounterBackgroundWorker().Init(null, "Logischer Datenträger", "Zeit (%)", d.Name[0].ToString() + d.Name[1].ToString(), 1000, lbl);
+                new PerformanceCounterBackgroundWorker().Init(bar, "Logischer Datenträger", "Freier Speicherplatz (%)", d.Name[0].ToString() + d.Name[1].ToString(), 1000, null);
             }
         }
 
         private void InitNetwork()
         {
-            new BackgroundWorkerProgressBar().Init(null, "Netzwerkschnittstelle", "Empfangene Bytes/s" , "Intel[R] Ethernet Connection [2] I219-V", 1000, null, (int value) =>
+            new PerformanceCounterBackgroundWorker().Init(null, "Netzwerkschnittstelle", "Empfangene Bytes/s" , "Intel[R] Ethernet Connection [2] I219-V", 1000, null, (int value) =>
             {
                 NetworkDown.Value = Math.Truncate(value / 1024f / (115f * 1024f / 8f) * 100f);
                 NetworkDownNumber.Content = GetBytesReadable(value);
             });
-            new BackgroundWorkerProgressBar().Init(null, "Netzwerkschnittstelle", "Bytes gesendet/s", "Intel[R] Ethernet Connection [2] I219-V", 1000, null,(int value) => 
+            new PerformanceCounterBackgroundWorker().Init(null, "Netzwerkschnittstelle", "Bytes gesendet/s", "Intel[R] Ethernet Connection [2] I219-V", 1000, null,(int value) => 
             {
                 NetworkUp.Value = Math.Truncate(value / 1024f / (60f * 1024f / 8f) * 100f);
                 NetworkUpNumber.Content = GetBytesReadable(value);
             });
+        }
+
+        private void InitProcesses()
+        {
+            //new Processes(ProcessesCPUNames, ProcessesCPUValues, false);
+            new Processes(ProcessesMemoryNames, ProcessesMemoryValues, true);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

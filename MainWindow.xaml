@@ -3,12 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sidebar"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Sidebar" Height="Auto" Width="136" Loaded="Window_Loaded" Closing="Window_Closing" ShowInTaskbar="False" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Stretch" Height="Auto" Margin="5,10,5,5" VerticalAlignment="Stretch" Width="Auto">
-        <Button Content="Schließen" Click="Button_Click_2"/>
+        <Button Content="Schließen" Click="Button_Click_2" Background="Gray"/>
         <Label Content="CPU" Margin="0,0,0,0" Foreground="LightGray"/>
         <Grid Height="Auto">
             <Grid.ColumnDefinitions>
@@ -16,15 +14,15 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
-                <ProgressBar x:Name="pbCPUTotal" Height="8" Margin="0,0,0,10" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore1" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore2" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore3" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore4" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore5" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore6" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore7" Height="8" Margin="0,0,0,2" Background="Gray"/>
-                <ProgressBar x:Name="pbCPUCore8" Height="8" Margin="0,0,0,2" Background="Gray"/>
+                <ProgressBar x:Name="pbCPUTotal" Height="8" Margin="0,0,0,10" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore1" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore2" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore3" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore4" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore5" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore6" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore7" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar x:Name="pbCPUCore8" Height="8" Margin="0,0,0,2" Background="Gray" BorderBrush="Gray"/>
             </StackPanel>
             <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
                 <Label Name="lblCPUTotal" Grid.Column="1" HorizontalAlignment="Right" Margin="10,-3,0,9" VerticalAlignment="Top" FontSize="8" Padding="0" Height="10" Foreground="LightGray"/>
@@ -52,6 +50,24 @@
             <StackPanel Name="DriveRight" Grid.Column="2" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
             </StackPanel>
         </Grid>
+        <Label Content="Memory Processes" Margin="0,0,0,0" Foreground="LightGray"/>
+        <Grid Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="ProcessesMemoryNames" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+            <StackPanel Name="ProcessesMemoryValues" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+        </Grid>
+        <!--<Label Content="CPU Processes" Margin="0,0,0,0" Foreground="LightGray"/>
+        <Grid Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="ProcessesCPUNames" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+            <StackPanel Name="ProcessesCPUValues" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+        </Grid>-->
         <Label Content="Network" Margin="0,0,0,0" Foreground="LightGray"/>
         <Grid Height="Auto">
             <Grid.ColumnDefinitions>
@@ -68,8 +84,8 @@
                 <Label Name="NetworkUpNumber" HorizontalAlignment="Right" Margin="0,0,1,2" VerticalAlignment="Top" FontSize="8" Padding="0" Height="10" Foreground="LightGray"/>
             </StackPanel>
             <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
-                <ProgressBar Name="NetworkDown" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100"/>
-                <ProgressBar Name="NetworkUp" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100"/>
+                <ProgressBar Name="NetworkDown" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Stretch" Height="10" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"/>
+                <ProgressBar Name="NetworkUp" Grid.ColumnSpan="2" Margin="0,0,0,2" HorizontalAlignment="Stretch" Height="10" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"/>
             </StackPanel>
         </Grid>
     </StackPanel>

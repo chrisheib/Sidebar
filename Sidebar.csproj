@@ -63,7 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BackgroundWorkerProgressBar.cs" />
+    <Compile Include="Processes.cs" />
+    <Compile Include="PerformanceCounterBackgroundWorker.cs" />
     <Compile Include="WpfAppBar\WpfAppBar\AppBarFunctions.cs" />
     <Compile Include="WpfAppBar\WpfAppBar\Interop.cs" />
     <Compile Include="WPFRollingMonitor\RollingMonitor.xaml.cs">
