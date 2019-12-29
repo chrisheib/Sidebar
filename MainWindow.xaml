@@ -59,7 +59,7 @@
             <StackPanel Name="ProcessesMemoryNames" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
             <StackPanel Name="ProcessesMemoryValues" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
         </Grid>
-        <!--<Label Content="CPU Processes" Margin="0,0,0,0" Foreground="LightGray"/>
+        <Label Content="CPU Processes" Margin="0,0,0,0" Foreground="LightGray"/>
         <Grid Height="Auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -67,7 +67,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Name="ProcessesCPUNames" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
             <StackPanel Name="ProcessesCPUValues" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
-        </Grid>-->
+        </Grid>
         <Label Content="Network" Margin="0,0,0,0" Foreground="LightGray"/>
         <Grid Height="Auto">
             <Grid.ColumnDefinitions>

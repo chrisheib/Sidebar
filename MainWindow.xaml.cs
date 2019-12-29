@@ -94,7 +94,7 @@ namespace Sidebar
         private void InitProcesses()
         {
             //new Processes(ProcessesCPUNames, ProcessesCPUValues, false);
-            new Processes(ProcessesMemoryNames, ProcessesMemoryValues, true);
+            new Processes(ProcessesMemoryNames, ProcessesMemoryValues, ProcessesCPUNames, ProcessesCPUValues);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
